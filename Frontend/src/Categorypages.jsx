@@ -1,38 +1,3 @@
-/*import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-const CategoryPages = () => {
-    const { categoryName } = useParams();
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:8080/api/upload/${categoryName}`)
-            .then(res => res.json())
-            .then(data => setItems(data))
-            .catch(err => console.error("Error fetching category items:", err));
-    }, [categoryName]);
-
-    return (
-        <div style={{ padding: "20px" }}>
-            <h1>{categoryName} Category</h1>
-            {items.length > 0 ? (
-                <ul>
-                    {items.map((item) => (
-                        <li key={item._id}>{item.name}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No items found in this category.</p>
-            )}
-        </div>
-    );
-};
-
-export default CategoryPages;
-*/
-
-
-
 import React, { useEffect, useState, } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
