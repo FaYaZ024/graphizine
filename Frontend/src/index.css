@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Lemonmilk';
+  src: url('D:\Project\Frontend\src\assets\LEMONMILK-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  @apply bg-slate-500;
+  font-family: 'Lemonmilk', sans-serif;
+  color:white;
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(calc(100% + 100vw));
+  }
+}
+
+.marquee-right {
+  animation: marquee-right 20s linear infinite;
+  white-space: nowrap;
+  display: inline-block;
+  will-change: transform;
+}
+
+@keyframes solidColorChange {
+  0% { color: #fb923c; } /* orange-400 */
+  17% { color: #fde047; } /* yellow-400 */
+  33% { color: #fbbf24; } /* amber-400 */
+  50% { color: #ef4444; } /* red-500 */
+  67% { color: #f43f5e; } /* rose-500 */
+  83% { color: #d946ef; } /* fuchsia-500 */
+  100% { color: #fb923c; } /* orange-400 */
+}
+
+.color-change-solid {
+  animation: solidColorChange 6s steps(6, end) infinite;
+}
+
