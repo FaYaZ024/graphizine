@@ -16,7 +16,7 @@ function LoginForm() {
   const handleLocalLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8080/api/auth/login", {
+      const res = await fetch("https://graphizinebackend.onrender.com/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -45,7 +45,7 @@ function LoginForm() {
       console.log("Google Login Success:", tokenResponse);
 
       try {
-        const res = await fetch("http://localhost:8080/api/auth/google", {
+        const res = await fetch("https://graphizinebackend.onrender.com/api/auth/google", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code: tokenResponse.code }),
