@@ -1,46 +1,15 @@
-/*import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-const CategoryPages = () => {
-    const { categoryName } = useParams();
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:8080/api/upload/${categoryName}`)
-            .then(res => res.json())
-            .then(data => setItems(data))
-            .catch(err => console.error("Error fetching category items:", err));
-    }, [categoryName]);
-
-    return (
-        <div style={{ padding: "20px" }}>
-            <h1>{categoryName} Category</h1>
-            {items.length > 0 ? (
-                <ul>
-                    {items.map((item) => (
-                        <li key={item._id}>{item.name}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No items found in this category.</p>
-            )}
-        </div>
-    );
-};
-
-export default CategoryPages;
-*/
-
-
 
 import React, { useEffect, useState, } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp,faDownload,  } from '@fortawesome/free-solid-svg-icons';
 
 const CategoryPages = () => {
     const { categoryName } = useParams();
     const [items, setItems] = useState([]);
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
+    const [activeImgIdx, setActiveImgIdx] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/upload/${categoryName}`)
@@ -51,6 +20,7 @@ const CategoryPages = () => {
 
     const handleProtectedDownload = async (url, name) => {
         if (!user) {
+            console.log("No user, navigating to login...");
             navigate("/login");
             return;
         }
@@ -75,42 +45,64 @@ const CategoryPages = () => {
         <div >
             <h1 className="text-xl font-bold mb-6 mt-5 text-center">{categoryName} COLLECTION</h1>
             {items.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
-                    {items.map((item) => (
-                        <div
-                            key={item._id}
-                            className="bg-slate-500 rounded-xl p-4 shadow-lg flex flex-col items-center"
-                        >
-                            {item.imagePath && (
-                                <img
-                                    src={`http://localhost:8080/${item.imagePath}`}
-                                    alt={item.name}
-                                    className="w-lg h-80 object-cover rounded-lg mb-3"
-                                />
-                            )}
-                            <span className="font-semibold text-slate-700 mb-3">
-                                {item.name}
-                            </span>
-
-                            <div className="flex gap-2"><button
-                                onClick={() => window.open(`http://localhost:8080/${item.imagePath}`, "_blank")}
-                               className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition"
+                <div className="min-h-screen flex flex-col items-center py-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 w-fit justify-items-center">
+                        {items.map((item, idx) => (
+                            <div
+                                key={item._id}
+                                className="relative group transition-transform duration-300"
+                                style={{
+                                    zIndex: activeImgIdx === idx ? 30 : 1,
+                                }}
                             >
-                                Preview
-                            </button>
+                                {item.imagePath && (
+                                    <img
+                                        src={`http://localhost:8080/${item.imagePath}`}
+                                        alt={item.name}
+                                        className={`aspect-square w-56 h-56 object-cover rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 ${activeImgIdx === idx ? "opacity-0 pointer-events-none" : ""
+                                            }`}
+                                        onClick={() => setActiveImgIdx(idx)}
+                                    />
+                                )}
+                                <span className="font-semibold text-slate-700 mb-3 block text-center">
+                                    {item.name}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
 
+                    {/* Centered fullscreen modal for preview */}
+                    {activeImgIdx !== null && (
+                        <div
+                            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+                            onClick={() => setActiveImgIdx(null)}
+                        >
+                            <div
+                                className="relative rounded-lg shadow-2xl flex flex-col items-center bg-transparent"
+                                style={{ width: "600px", height: "500px" }}
+                                onClick={e => e.stopPropagation()}
+                            >
                                 <button
-                                    onClick={() => handleProtectedDownload(`http://localhost:8080/${item.imagePath}`, item.name || "image.jpg")}
-                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                                    className="absolute top-3 right-2 bg-black/60 rounded-full w-7 h-7 text-white"
+                                    onClick={() => setActiveImgIdx(null)}
+                                >✖</button>
+                                <img
+                                    src={`http://localhost:8080/${items[activeImgIdx].imagePath}`}
+                                    alt={items[activeImgIdx].name}
+                                    className="object-contain w-full h-full rounded-lg"
+                                />
+                                <button
+                                    onClick={() => handleProtectedDownload(`http://localhost:8080/${items[activeImgIdx].imagePath}`, items[activeImgIdx].name || "image.jpg")}
+                                    className="mt-2 bg-black/70 text-white rounded-lg px-4 py-1 text-lg font-bold hover:bg-beige transition"
                                 >
-                                    Download
+                                   <FontAwesomeIcon icon={faDownload} />
                                 </button>
                             </div>
                         </div>
-                    ))}
+                    )}
                 </div>
             ) : (
-                <p>No items found in this category.</p>
+                <div className="text-center text-gray-500">No items found.</div>
             )}
         </div>
     );

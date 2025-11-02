@@ -1,46 +1,28 @@
 @import "tailwindcss";
 
+@theme {
+  --color-beige: #2C2C2C;
+  --color-brown: #C19A6B ;
+}
+
 @font-face {
   font-family: 'Lemonmilk';
-  src: url('D:\Project\Frontend\src\assets\LEMONMILK-Regular.otf') format('truetype');
+  src: url(D:\Project\Frontend\src\assets\LEMONMILK-Regular.otf) format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 body {
-  @apply bg-slate-500;
+  @apply bg-[url(assets\gradient4-svg.svg)];
   font-family: 'Lemonmilk', sans-serif;
-  color:white;
+  color:#2C2C2C;
 }
 
-@keyframes marquee-right {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(calc(100% + 100vw));
-  }
+
+ .hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
 
-.marquee-right {
-  animation: marquee-right 20s linear infinite;
-  white-space: nowrap;
-  display: inline-block;
-  will-change: transform;
-}
-
-@keyframes solidColorChange {
-  0% { color: #fb923c; } /* orange-400 */
-  17% { color: #fde047; } /* yellow-400 */
-  33% { color: #fbbf24; } /* amber-400 */
-  50% { color: #ef4444; } /* red-500 */
-  67% { color: #f43f5e; } /* rose-500 */
-  83% { color: #d946ef; } /* fuchsia-500 */
-  100% { color: #fb923c; } /* orange-400 */
-}
-
-.color-change-solid {
-  animation: solidColorChange 6s steps(6, end) infinite;
-}
-
+ 

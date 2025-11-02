@@ -1,31 +1,3 @@
-/*import { useState } from "react";
-
-function Dropdown({ onChange }) {
-  const [selected, setSelected] = useState("");
-
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setSelected(value);
-    onChange(value);  // Notify parent (Upload) of change
-  };
-
-  return (
-    <div>
-      <label htmlFor="dropdown">Choose a category:</label>
-      <select id="dropdown" value={selected} onChange={handleChange} required>
-        <option value="">-- Select --</option>
-        <option value="border">Border</option>
-        <option value="abstract">Abstract</option>
-        <option value="illustration">Illustration</option>
-      </select>
-      {selected && <p>You selected: {selected}</p>}
-    </div>
-  );
-}
-
-export default Dropdown;*/
-
-
 
 import { useState, useEffect } from "react";
 

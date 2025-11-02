@@ -1,115 +1,3 @@
-/*import React from "react";
-import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
-
-function LoginForm() {
-  // Google Login Hook
-const login = useGoogleLogin({
-  flow: "auth-code",   // or "implicit"
-  onSuccess: (tokenResponse) => {
-    console.log("Google Login Success:", tokenResponse);
-  },
-});
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Normal email/password login");
-  };
-
-  return (
-    <div>
-      <h2>Login Page</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email: </label>
-          <input type="email" required />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input type="password" required />
-        </div>
-        <button type="submit">Login</button>
-        <p>or</p>
-        <div>
-
-          <button type="button" onClick={() => login()}>
-            Google
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
-// Wrap your app with GoogleOAuthProvider in main.jsx or App.jsx
-function Login() {
-  return (
-    <GoogleOAuthProvider clientId="674597441052-m7ubqrd451k7ejivsk6vetg66teg2fsr.apps.googleusercontent.com">
-      <LoginForm />
-    </GoogleOAuthProvider>
-  );
-}
-
-export default Login;
-
-
-
-
-
-
-
-import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
-
-function Login() {
-  const navigate = useNavigate();
-
-  const login = useGoogleLogin({
-    flow: "auth-code", // or "implicit"
-    onSuccess: (tokenResponse) => {
-      console.log("Google Login Success:", tokenResponse);
-
-      // 👉 after successful login, redirect to home
-      navigate("/");
-    },
-    onError: (error) => {
-      console.error("Google Login Failed:", error);
-    },
-  });
-
-  return (
-    <div>
-      <h2>Login Page</h2>
-      <form>
-        <div>
-          <label>Email: </label>
-          <input type="email" required />
-        </div>
-        <div>
-          <label>Password: </label>
-          <input type="password" required />
-        </div>
-        <button type="submit">Login</button>
-        <p>or</p>
-        <div>
-          <button type="button" onClick={() => login()}>
-            Login with Google
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
-export default function App() {
-  return (
-    <GoogleOAuthProvider clientId="674597441052-m7ubqrd451k7ejivsk6vetg66teg2fsr.apps.googleusercontent.com">
-      <Login />
-    </GoogleOAuthProvider>
-  );
-}
-*/
-
-
 
 // src/pages/Login.jsx
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
@@ -187,43 +75,43 @@ function LoginForm() {
   return (
     <div className=" min-h-screen flex items-center justify-center ">
       {/* Local Login */}
-      <form onSubmit={handleLocalLogin} className="bg-transparent p-8 rounded-xl shadow-lg max-w-md mx-auto flex flex-col gap-6">
-        <h2 className="text-2xl font-bold text-gray-100 text-center mb-4">
+      <form onSubmit={handleLocalLogin} className="bg-brown/60 p-8 rounded-xl shadow-lg max-w-md mx-auto flex flex-col gap-6">
+        <h2 className="text-2xl font-bold text-beige text-center mb-4">
           Login Page
         </h2>
         <div style={{ margin: "10px" }}>
-          <label>Email: </label>
+          <label className="text-beige">Email: </label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-900 placeholder-gray-400 
-             shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent transition"
+            className="w-full px-4 py-2 rounded-md border border-beige text-beige bg-transparent placeholder-beige
+             shadow-sm focus:outline-none focus:ring-2 focus:ring-beige focus:border-transparent transition"
           />
         </div>
         <div style={{ margin: "10px" }}>
-          <label>Password: </label>
+          <label className="text-beige">Password: </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-900 placeholder-gray-400 
-             shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent transition"
+            className="w-full px-4 py-2 rounded-md border  border-beige text-beige bg-transparent placeholder-transparent 
+             shadow-sm focus:outline-none focus:ring-2 focus:ring-beige focus:border-transparent transition"
           />
         </div>
         <div className="flex flex-col items-center gap-4 mt-6">
-          <button type="submit" className="w-1/2 cursor-pointer bg-blue-400 outline-solid outline-2 outline-blue-500 hover:bg-blue-500  hover:outline-blue-400 text-white font-bold py-2 rounded-md shadow-md transition duration-300">
+          <button type="submit" className="w-1/2 cursor-pointer border border-beige   text-beige font-bold py-2 rounded-md shadow-md transition duration-300">
             Login
           </button>
 
-          <p className="text-center font-semibold text-gray-200">or</p>
+          <p className="text-center font-semibold text-beige">or</p>
 
           {/* Google Login */}
           <button
             onClick={() => loginWithGoogle()}
-            className="w-1/2 cursor-pointer bg-blue-400 outline-solid outline-2 outline-blue-500 hover:bg-blue-500  hover:outline-blue-400 text-white font-bold py-2 rounded-md shadow-md transition duration-300"
+            className="w-1/2 cursor-pointer border border-beige   text-beige font-bold py-2 rounded-md shadow-md transition duration-300"
           >
             Login with Google
           </button>
