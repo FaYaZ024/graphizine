@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 function Dropdown({ onChange }) {
@@ -7,7 +6,7 @@ function Dropdown({ onChange }) {
 
   useEffect(() => {
     // Fetch categories from backend API
-    fetch("http://localhost:8080/api/categories") // change to your actual API endpoint
+    fetch("https://graphizinebackend.onrender.com/api/categories") // change to your actual API endpoint
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error("Error fetching categories:", err));
