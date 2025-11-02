@@ -13,7 +13,7 @@ dotenv.config();
 app.use(express.json());
 
 const corsOptions = {
-    origin: ["http://localhost:5173"],
+    origin: ["https://graphizine-frontend.onrender.com"],
 };
 app.use(cors(corsOptions));
 
