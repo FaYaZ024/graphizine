@@ -14,7 +14,7 @@ function Upload({ onUploadSuccess }) {
 
     const fetchImages = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/images");
+            const res = await axios.get("https://graphizinebackend.onrender.com/api/images");
             setImages(res.data);
         } catch (error) {
             console.error("Error fetching images:", error);
@@ -42,7 +42,7 @@ function Upload({ onUploadSuccess }) {
 
         try {
             await axios.post(
-                "http://localhost:8080/api/upload",
+                "https://graphizinebackend.onrender.com/api/upload",
                 formData,
                 {
                     headers: {
@@ -66,7 +66,7 @@ function Upload({ onUploadSuccess }) {
             try {
                 const token = localStorage.getItem("adminToken");
                 await axios.delete(
-                    `http://localhost:8080/api/images/${id}`,
+                    `https://graphizinebackend.onrender.com/api/images/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
