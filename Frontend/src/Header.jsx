@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
 import { UserContext } from "./Context";
-import MyIcon from './assets/op logo.svg';
+
 
 function Header() {
   const navigate = useNavigate();
@@ -109,7 +109,7 @@ function Header() {
       </div>
 
       <div className="flex justify-center items-center  ">
-        <img src={MyIcon} alt="logo" onClick={() => navigate("/")} className="w-22 h-22 mb-7  mr-2" />
+        <img src="/assets/op logo.svg" alt="logo" onClick={() => navigate("/")} className="w-22 h-22 mb-7  mr-2" />
         <h1 className="text-3xl text-center font-bold tracking-wider">GRAPHIZINE</h1>
 
       </div>
