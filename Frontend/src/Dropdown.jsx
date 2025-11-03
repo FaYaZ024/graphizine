@@ -6,7 +6,7 @@ function Dropdown({ onChange }) {
 
   useEffect(() => {
     // Fetch categories from backend API
-    fetch("https://graphizinebackend.onrender.com/api/categories") // change to your actual API endpoint
+    fetch("http://localhost:8080/api/categories") // change to your actual API endpoint
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error("Error fetching categories:", err));
