@@ -15,10 +15,6 @@ function Home() {
   const [previewIdx, setPreviewIdx] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
 
-
-
-
-
   const [allImages, setAllImages] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:8080/api/images") // <-- your API should return all images
