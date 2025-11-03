@@ -14,7 +14,7 @@ function Header() {
 
   useEffect(() => {
     axios
-      .get("https://graphizinebackend.onrender.com/api/categories")
+      .get("http://localhost:8080/api/categories")
       .then((res) => setCategories(res.data))
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
