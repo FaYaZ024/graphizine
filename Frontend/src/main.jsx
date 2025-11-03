@@ -10,7 +10,7 @@ import Layout from './Layout.jsx'
 import AdminLogin from './AdminLogin.jsx'
 import { useState } from 'react';
 import { UserProvider } from './Context.jsx'
-import Contact from './contact.jsx'
+import Contact from './Contact.jsx'
 import Terms from './Terms.jsx'
 import About from './About.jsx'
 import Privacy from './Privacy.jsx'
