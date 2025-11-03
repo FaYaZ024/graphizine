@@ -17,7 +17,7 @@ function Home() {
 
   const [allImages, setAllImages] = useState([]);
   useEffect(() => {
-    axios.get("https://graphizinebackend.onrender.com/api/images") // <-- your API should return all images
+    axios.get("http://localhost:8080/api/images") // <-- your API should return all images
       .then(res => setAllImages(res.data))
       .catch(err => console.error("Error fetching all images:", err));
   }, []);
@@ -31,7 +31,7 @@ function Home() {
 
 
   useEffect(() => {
-    axios.get("https://graphizinebackend.onrender.com/api/images/latest")
+    axios.get("http://localhost:8080/api/images/latest")
       .then(res => setLatestImages(res.data))
       .catch(err => console.error("Error fetching latest images:", err));
   }, []);
@@ -85,7 +85,7 @@ function Home() {
             onClick={() => setPreviewIdx(previewIdx === idx ? null : idx)}
           >
             <img
-              src={`https://graphizinebackend.onrender.com/${img.imagePath}`}
+              src={`http://localhost:8080/${img.imagePath}`}
               alt={img.name}
               style={{
                 width: "100%",
@@ -127,7 +127,7 @@ function Home() {
               }}
             >
               <img
-                src={`https://graphizinebackend.onrender.com/${img.imagePath}`}
+                src={`http://localhost:8080/${img.imagePath}`}
                 alt={img.name}
                 className={`aspect-square w-50 h-50 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300
             ${activeImgIdx === idx ? "opacity-0 pointer-events-none" : ""}
@@ -151,12 +151,12 @@ function Home() {
                 onClick={() => setActiveImgIdx(null)}
               >✖</button>
               <img
-                src={`https://graphizinebackend.onrender.com/${sortedImages[activeImgIdx].imagePath}`}
+                src={`http://localhost:8080/${sortedImages[activeImgIdx].imagePath}`}
                 alt={sortedImages[activeImgIdx].name}
                 className="object-contain w-full h-full rounded-lg"
               />
               <button
-                onClick={() => handleProtectedDownload(`https://graphizinebackend.onrender.com/${sortedImages[activeImgIdx].imagePath}`, sortedImages[activeImgIdx].name || "image.jpg")}
+                onClick={() => handleProtectedDownload(`http://localhost:8080/${sortedImages[activeImgIdx].imagePath}`, sortedImages[activeImgIdx].name || "image.jpg")}
                 className="mt-2 bg-black/70 text-white rounded-lg px-4 py-1 text-lg font-bold hover:bg-beige transition"
               >
                <FontAwesomeIcon icon={faDownload} />
