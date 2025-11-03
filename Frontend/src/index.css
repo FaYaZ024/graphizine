@@ -7,14 +7,14 @@
 
 @font-face {
   font-family: 'Lemonmilk';
-  src: url(D:\Project\Frontend\src\assets\LEMONMILK-Regular.otf) format('truetype');
+  src: url('/assets/LEMONMILK-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 body {
-  @apply bg-[url(assets\gradient4-svg.svg)];
+  background-image: url('/assets/gradient4-svg.svg');
   font-family: 'Lemonmilk', sans-serif;
   color:#2C2C2C;
 }
