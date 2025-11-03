@@ -12,7 +12,7 @@ const CategoryPages = () => {
     const [activeImgIdx, setActiveImgIdx] = useState(null);
 
     useEffect(() => {
-        fetch(`https://graphizinebackend.onrender.com/api/upload/${categoryName}`)
+        fetch(`http://localhost:8080/api/upload/${categoryName}`)
             .then(res => res.json())
             .then(data => setItems(data))
             .catch(err => console.error("Error fetching category items:", err));
@@ -57,7 +57,7 @@ const CategoryPages = () => {
                             >
                                 {item.imagePath && (
                                     <img
-                                        src={`https://graphizinebackend.onrender.com/${item.imagePath}`}
+                                        src={`http://localhost:8080/${item.imagePath}`}
                                         alt={item.name}
                                         className={`aspect-square w-56 h-56 object-cover rounded-lg shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 ${activeImgIdx === idx ? "opacity-0 pointer-events-none" : ""
                                             }`}
@@ -87,12 +87,12 @@ const CategoryPages = () => {
                                     onClick={() => setActiveImgIdx(null)}
                                 >✖</button>
                                 <img
-                                    src={`https://graphizinebackend.onrender.com/${items[activeImgIdx].imagePath}`}
+                                    src={`http://localhost:8080/${items[activeImgIdx].imagePath}`}
                                     alt={items[activeImgIdx].name}
                                     className="object-contain w-full h-full rounded-lg"
                                 />
                                 <button
-                                    onClick={() => handleProtectedDownload(`https://graphizinebackend.onrender.com/${items[activeImgIdx].imagePath}`, items[activeImgIdx].name || "image.jpg")}
+                                    onClick={() => handleProtectedDownload(`http://localhost:8080/${items[activeImgIdx].imagePath}`, items[activeImgIdx].name || "image.jpg")}
                                     className="mt-2 bg-black/70 text-white rounded-lg px-4 py-1 text-lg font-bold hover:bg-beige transition"
                                 >
                                    <FontAwesomeIcon icon={faDownload} />
