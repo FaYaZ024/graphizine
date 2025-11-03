@@ -7,7 +7,7 @@ const Categories = () => {
     const [newCategory, setNewCategory] = useState("");
 
     const fetchCategories = () => {
-        fetch("https://graphizinebackend.onrender.com/api/categories")
+        fetch("http://localhost:8080/api/categories")
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(err => console.error(err));
@@ -20,7 +20,7 @@ const Categories = () => {
     const addCategory = () => {
         if (!newCategory.trim()) return;
 
-        fetch("https://graphizinebackend.onrender.com/api/categories", {
+        fetch("http://localhost:8080/api/categories", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: newCategory })
@@ -39,7 +39,7 @@ const Categories = () => {
 
     const removeCategory = (id) => {
         if (window.confirm("Are you sure you want to delete this category?")) {
-            fetch(`https://graphizinebackend.onrender.com/api/categories/${id}`, {
+            fetch(`http://localhost:8080/api/categories/${id}`, {
                 method: "DELETE",
             })
                 .then(res => res.json())
