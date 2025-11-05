@@ -17,7 +17,7 @@ const app = express();
 // ---------- Middleware ----------
 app.use(express.json());
 app.use(cors({ 
-  origin: ["https://graphizine-frontend.onrender.com", "https://accounts.google.com"], 
+  origin: ["http://localhost:5173", "https://accounts.google.com"], 
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -32,7 +32,7 @@ mongoose
   .connect(MONGOURL)
   .then(() => {
     console.log("✅ Database Connected Successfully.");
-    // app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+   app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
   })
   .catch((err) => console.error("❌ DB Connection Error:", err));
 
@@ -337,4 +337,3 @@ app.delete("/api/images/:id", authenticateAdmin, async (req, res) => {
   }
 });
 
-export default app;
